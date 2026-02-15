@@ -1,0 +1,181 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: $bg-light;
+  color: $text-dark;
+  line-height: 1.5;
+  position: relative;
+  min-height: 100vh;
+}
+
+// Романтический фон с надписями
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url("images/fon.jpg");
+  background-repeat: repeat;
+  z-index: -1;
+}
+
+// Заголовки
+h1, h2, h3 {
+  font-family: "Podkova", serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0 auto 1.5rem auto;
+  max-width: 800px;
+  line-height: 1.3;
+}
+.glass-title {
+  display: inline-block;
+  padding: 0.5em 1em;
+  border-radius: 60px;
+  background: rgba(255, 69, 58, 0.15);
+  backdrop-filter: $backdrop-blur;
+  -webkit-backdrop-filter: $backdrop-blur;
+  border: 1px solid rgba(255, 69, 58, 0.3);
+  box-shadow: $shadow-glass;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+  color: $text-dark;
+}
+
+// Класс для жидкого глянца (красный градиент)
+.liquid-glaze {
+  font-family:  "Podkova", serif;
+  font-size: 4rem;
+  color: #FB607F; // тёмно-красный
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  display: inline-block;
+  padding: 0 20px;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-family: "Podkova", serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: white; // текст белый, чтобы контрастировал со стеклом
+  background: rgba(255, 69, 58, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 60px; // сильно скруглённый пузырёк
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 8px 24px rgba(255, 69, 58, 0.2);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+// Стеклянные карточки (для кнопок, воспоминаний)
+.glass-card {
+  @include glass-effect;
+  border-radius: 30px;
+  padding: 8px 16px;
+  color: white;        // текст белый, чтобы контрастировал с красным стеклом
+  border: none;
+  cursor: pointer;
+  transition: $transition-smooth;
+  &:hover {
+    background: $bg-glass-hover;
+  }
+}
+h2 {
+  font-family: "Podkova", serif; 
+  font-size: 2.8rem;
+  color: #c94f6e;
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   bottom: -10px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   width: 80px;
+  //   height: 2px;
+  //   background: linear-gradient(90deg, transparent, $red-primary, transparent);
+  // }
+}
+@media (max-width: 768px) {
+  .liquid-glaze {
+    font-size: 3rem;
+  }
+  .page-title {
+    font-size: 2rem;
+    padding: 0.4em 1.2em;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .liquid-glaze {
+    font-size: 2rem;
+  }
+  .page-title {
+    font-size: 1.5rem;
+    padding: 0.3em 1em;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 360px) {
+  .page-title {
+    font-size: 1.2rem;
+    padding: 0.3em 0.8em;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+// Заголовки теперь со стеклянным фоном-плашкой
+// h1, h2 {
+//   display: inline-block;
+//   padding: 0.5em 1em;
+//   border-radius: 60px;          // сильно скруглённые края
+//   background: rgba(255, 69, 58, 0.15);
+//   backdrop-filter: $backdrop-blur;
+//   -webkit-backdrop-filter: $backdrop-blur;
+//   border: 1px solid rgba(255, 69, 58, 0.3);
+//   box-shadow: $shadow-glass;
+//   font-family: 'Playfair Display', serif;
+//   color: $text-dark;
+//   margin-bottom: 20px;
+// }
+
+// Для заголовков с градиентом (если используется класс liquid-glaze)
+// .liquid-glaze {
+//  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, $red-primary 80%);
+//   backdrop-filter: $backdrop-blur;
+//   -webkit-backdrop-filter: $backdrop-blur;
+//   -webkit-background-clip: text;
+//   background-clip: text;
+//   color: transparent;
+//   border: none;
+//   box-shadow: none;
+//   padding: 0;
+// }

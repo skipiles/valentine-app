@@ -1,0 +1,94 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  @include glass-effect;
+  border-bottom: 1px solid rgba(255, 69, 58, 0.3);
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 40px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(255, 69, 58, 0.25);
+    backdrop-filter: $backdrop-blur;
+    -webkit-backdrop-filter: $backdrop-blur;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 69, 58, 0.2);
+
+    &:hover {
+      background: rgba(255, 69, 58, 0.4);
+      backdrop-filter: blur(16px); // усиленное размытие
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 6px 20px rgba(255, 69, 58, 0.4);
+      transform: scale(1.02); // лёгкое увеличение (опционально)
+    }
+
+    &.active {
+      background: $red-primary;
+      border-color: white;
+      box-shadow: 0 4px 16px rgba($red-primary, 0.5);
+      backdrop-filter: none; // активная кнопка без размытия
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+}
+.catIcon {
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  vertical-align: middle;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: filter 0.2s;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 8px 12px;
+  }
+  .header a {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header a {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+}

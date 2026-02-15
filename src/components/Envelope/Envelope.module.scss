@@ -1,0 +1,243 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.envelope {
+  position: relative;
+  width: min(600px, 95vw);
+  height: min(450px, 70vh);
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 1000px;
+
+  // @media (max-width: 768px) {
+  //   height: auto;
+  //   min-height: 400px;
+  // }
+
+  // @media (max-width: 480px) {
+  //   min-height: 360px;
+  // }
+}
+
+.envelopeInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  box-shadow: $shadow-glass;
+
+  &.open {
+    transform: rotateY(180deg);
+  }
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.front {
+  background: rgba(255, 69, 58, 0.25);
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  @include glass-effect;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+.back {
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: $backdrop-blur;
+  transform: rotateY(180deg);
+  padding: 16px;
+  overflow-y: auto;
+  @include glass-effect;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
+}
+
+.heartIcon {
+  font-size: 80px;
+  color: #FB607F;
+  margin-bottom: 16px;
+  cursor: pointer;
+  display: inline-block;
+
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 50px;
+  }
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.scrollButton {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // @media (max-width: 768px) {
+  //   width: 32px;
+  //   height: 32px;
+  //   font-size: 18px;
+  // }
+
+  // @media (max-width: 480px) {
+  //   width: 28px;
+  //   height: 28px;
+  //   font-size: 16px;
+  // }
+}
+
+.carousel {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carouselItem {
+  flex: 0 0 auto;
+  width: 160px;
+  scroll-snap-align: start;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+ @media (max-width: 768px) {
+  .envelope {
+    width: 95vw;
+    height: 400px;        // фиксированная высота
+    max-height: 70vh;     // но не больше 70% экрана
+    min-height: 0;        // сбрасываем предыдущий min-height
+  }
+
+  .front {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .heartIcon {
+    font-size: 60px;
+  }
+
+  // .carouselContainer {
+  //   // можно оставить как есть
+  // }
+
+  .scrollButton {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .carouselItem {
+    width: 130px;
+    img {
+      height: 150px;
+    }
+  }
+
+  .message {
+    font-size: 16px;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .envelope {
+    height: 360px;        // чуть меньше для очень маленьких экранов
+  }
+
+  .front {
+    font-size: 18px;
+  }
+
+  .heartIcon {
+    font-size: 50px;
+  }
+
+  .carouselItem {
+    width: 110px;
+    img {
+      height: 130px;
+    }
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .scrollButton {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+}
+}

@@ -1,0 +1,21 @@
+// Красная палитра (Apple Red: #FF3B30, но можно мягче)
+// Основные цвета
+$red-primary: #FF453A;      // яркий красный
+$red-light: rgba(255, 69, 58, 0.8);
+$red-dark: #D70015;
+
+// Фоны
+$bg-light: #230D21	;     // теперь белый фон
+$bg-glass: rgba(255, 69, 58, 0.15); // полупрозрачное красное стекло
+$bg-glass-hover: rgba(255, 69, 58, 0.25);
+
+// Эффекты
+$backdrop-blur: blur(12px);
+$shadow-glass: 0 4px 16px rgba(255, 69, 58, 0.2);
+$border-glass: 1px solid rgba(255, 69, 58, 0.2);
+
+// Анимации
+$transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// Текст
+$text-dark: #1C1C1E;         // тёмный текст на белом фоне
